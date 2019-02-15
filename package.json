@@ -1,0 +1,23 @@
+{
+  "name": "@fappurbate/channel-bot",
+  "version": "0.1.0",
+  "description": "Extension side of the library allowing easy communication among Chaturbate apps & bots and Fappurbate extensions.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fappurbate/channel-bot.git"
+  },
+  "keywords": [
+    "chaturbate",
+    "fappurbate"
+  ],
+  "author": "Kothique Félixx <kothique@protonmail.ch>",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/fappurbate/channel-bot/issues"
+  },
+  "homepage": "https://github.com/fappurbate/channel-bot#readme"
+}
