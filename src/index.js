@@ -51,7 +51,7 @@ class Channel {
 
     this.onEvent = {
       addListener: (subject, callback) => this._eventHandlers.on(subject, callback),
-      removeListener: (subject, callback) => this._eventHandlers.off(subject, callback)
+      removeListener: (subject, callback) => this._eventHandlers.removeListener(subject, callback)
     };
 
     this.onRequest = {
@@ -95,10 +95,10 @@ class Channel {
    * Removes all event listeners. After this the channel is not usable anymore.
    */
   close() {
-    events.off('failure', this._listeners.failure);
-    events.off('success', this._listeners.success);
-    events.off('request', this._listeners.request);
-    events.off('event', this._listeners.event);
+    events.removeListener('failure', this._listeners.failure);
+    events.removeListener('success', this._listeners.success);
+    events.removeListener('request', this._listeners.request);
+    events.removeListener('event', this._listeners.event);
   }
 
   get name() { return this._name; }

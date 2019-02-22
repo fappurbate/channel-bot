@@ -1,8 +1,8 @@
 {
   "name": "@fappurbate/channel-bot",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Bot side of the library allowing easy communication among Chaturbate apps & bots and Fappurbate extensions.",
-  "main": "dist/index.js",
+  "main": "dist/index.min.js",
   "scripts": {
     "dev": "npx gulp dev",
     "build": "npx gulp build",
@@ -30,12 +30,18 @@
     "gulp": "^4.0.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify-es": "^1.0.4",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "rollup-plugin-commonjs": "^8.4.0",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-stream": "^1.24.1",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "@kothique/request-target": "^2.3.1"
+    "@kothique/request-target": "^2.3.3",
+    "events": "^3.0.0"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=8.15"
   }
 }

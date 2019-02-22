@@ -35,15 +35,15 @@ describe('requests', function () {
     const listeners = {};
 
     cb.$events.on('success', listeners.success = (requestId, data) => {
-      cb.$events.off('success', listeners.success);
-      cb.$events.off('failure', listeners.failure);
+      cb.$events.removeListener('success', listeners.success);
+      cb.$events.removeListener('failure', listeners.failure);
       expect(data).to.eql({ boom: { myData: 42 } });
       done();
     });
 
     cb.$events.on('failure', listeners.failure = (requestId, data) => {
-      cb.$events.off('success', listeners.success);
-      cb.$events.off('failure', listeners.failure);
+      cb.$events.removeListener('success', listeners.success);
+      cb.$events.removeListener('failure', listeners.failure);
       done(new Error('should have succeeded'));
     });
 
@@ -58,14 +58,14 @@ describe('requests', function () {
     const listeners = {};
 
     cb.$events.on('success', listeners.success = (requestId, data) => {
-      cb.$events.off('success', listeners.success);
-      cb.$events.off('failure', listeners.failure);
+      cb.$events.removeListener('success', listeners.success);
+      cb.$events.removeListener('failure', listeners.failure);
       done(new Error('should have failed'));
     });
 
     cb.$events.on('failure', listeners.failure = (requestId, data) => {
-      cb.$events.off('success', listeners.success);
-      cb.$events.off('failure', listeners.failure);
+      cb.$events.removeListener('success', listeners.success);
+      cb.$events.removeListener('failure', listeners.failure);
       expect(data).to.eql({ boom: { myData: 42 } });
       done();
     });
