@@ -1,6 +1,6 @@
 const gulp = require('gulp');
-const uglify = require('gulp-uglify-es').default;
 const rollup = require('rollup-stream');
+const uglify = require('gulp-uglify-es').default;
 const source = require('vinyl-source-stream');
 const sourcemaps = require('gulp-sourcemaps');
 const buffer = require('vinyl-buffer');
@@ -19,15 +19,22 @@ const js = ({ dev = true } = {}) => function () {
       commonjs()
     ]
   })
-  .pipe(source('index.min.js'))
+  .pipe(source('index.js'))
   .pipe(buffer());
 
-  dev && (stream = stream.pipe(sourcemaps.init({ loadMaps: true })));
-  !dev && (stream = stream.pipe(uglify()));
-  dev && (stream = stream.pipe(sourcemaps.write()));
-  stream = stream.pipe(gulp.dest('dist'));
+  if (dev) {
+    stream = stream.pipe(sourcemaps.init({ loadMaps: true }));
+  }
 
-  return stream;
+  if (!dev) {
+    stream = stream.pipe(uglify());
+  }
+
+  if (dev) {
+    stream = stream.pipe(sourcemaps.write());
+  }
+
+  return stream.pipe(gulp.dest('dist'));
 };
 
 gulp.task('build', js({ dev: false }));

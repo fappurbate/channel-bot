@@ -67,15 +67,13 @@ class Channel {
       this._eventHandlers.emit(subject, data);
     });
 
-    events.on('request', this._listeners.request = async (channelName, requestId, subject, data) => {
+    events.on('request', this._listeners.request = (channelName, requestId, subject, data) => {
       if (channelName !== this._name) { return; }
 
-      try {
-        const result = await this._requestHandlers.request(subject, data);
-        cb.sendNotice(this._createSuccessfulResponse(requestId, result), cb.room_slug);
-      } catch (error) {
-        cb.sendNotice(this._createFailingResponse(requestId, error), cb.room_slug);
-      }
+      this._requestHandlers.request(subject, data).then(
+        result => cb.sendNotice(this._createSuccessfulResponse(requestId, result), cb.room_slug),
+        error => cb.sendNotice(this._createFailingResponse(requestId, error), cb.room_slug)
+      );
     });
 
     events.on('success', this._listeners.success = (channelName, requestId, data) => {
