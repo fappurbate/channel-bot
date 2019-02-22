@@ -1,5 +1,4 @@
-import './common';
-import Channel, { Failure } from '../src';
+const { Channel, Failure } = require('../src');
 
 describe('requests', function () {
   beforeEach(function () {

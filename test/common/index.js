@@ -1,9 +1,9 @@
-import chai from 'chai';
-import chaiAsPromised from 'chai-as-promised';
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
 
 chai.use(chaiAsPromised);
 
-import cb from './cb';
+const cb = require('./cb');
 
 global.expect = chai.expect;
 global.cb = cb;

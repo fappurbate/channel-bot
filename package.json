@@ -1,11 +1,12 @@
 {
   "name": "@fappurbate/channel-bot",
-  "version": "0.1.0",
-  "description": "Extension side of the library allowing easy communication among Chaturbate apps & bots and Fappurbate extensions.",
+  "version": "0.1.1",
+  "description": "Bot side of the library allowing easy communication among Chaturbate apps & bots and Fappurbate extensions.",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "npx babel src --out-dir dist --source-maps true --watch",
-    "build": "npx babel src --out-dir dist --source-maps true --env-name production",
+    "dev": "npx gulp dev",
+    "build": "npx gulp build",
+    "prepare": "npm run build",
     "test": "npx mocha",
     "test:watch": "npx mocha --watch"
   },
@@ -24,17 +25,17 @@
   },
   "homepage": "https://github.com/fappurbate/channel-bot#readme",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
-    "@babel/register": "^7.0.0",
-    "babel-preset-minify": "^0.5.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "gulp": "^4.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify-es": "^1.0.4",
     "mocha": "^5.2.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
     "@kothique/request-target": "^2.3.1"
+  },
+  "engines": {
+    "node": ">=8"
   }
 }

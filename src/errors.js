@@ -1,4 +1,4 @@
-export class Failure extends Error {
+class Failure extends Error {
   constructor(data = {}) {
     super(data.message || '');
     Error.captureStackTrace(this, Failure);
@@ -8,3 +8,7 @@ export class Failure extends Error {
     this.data = data;
   }
 }
+
+module.exports = {
+  Failure
+};

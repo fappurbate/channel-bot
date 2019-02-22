@@ -1,5 +1,4 @@
-import './common';
-import Channel from '../src';
+const Channel = require('../src');
 
 describe('requests', function () {
   beforeEach(function () {

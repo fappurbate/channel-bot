@@ -1,20 +1,21 @@
-import EventEmitter from 'events';
+const EventEmitter = require('events');
 
 const extensionEvents = new EventEmitter;
 const testBedEvents = new EventEmitter;
 
-export { testBedEvents as events };
+module.exports.events = testBedEvents;
 
-export function sendMessage(message, username) {
+function sendMessage(message, username) {
   extensionEvents.emit('message', { m: message, user: username });
 }
+module.exports.sendMessage = sendMessage;
 
-export default {
+module.exports = {
   $events: testBedEvents,
   $sendMessage: sendMessage,
   room_slug: 'Basie',
   sendNotice: (message, receiver) => {
-    if (receiver !== exports.default.room_slug) { return; }
+    if (receiver !== module.exports.room_slug) { return; }
 
     if (message.startsWith('/fb/channel/')) {
       const rest = JSON.parse(message.substr('/fb/channel/'.length));
@@ -30,11 +31,11 @@ export default {
         if (subject === 'test-success') {
           sendMessage(`/fb/channel/${JSON.stringify(
             [channelName, 'success', requestId, { boom: data }]
-          )}`, exports.default.room_slug);
+          )}`, module.exports.room_slug);
         } else if (subject === 'test-failure') {
           sendMessage(`/fb/channel/${JSON.stringify(
             [channelName, 'failure', requestId, { boom: data }]
-          )}`, exports.default.room_slug);
+          )}`, module.exports.room_slug);
         }
       } else if (type === 'success') {
         const [,, requestId, data] = rest;
