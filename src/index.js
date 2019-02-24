@@ -1,3 +1,4 @@
+require('@fappurbate/cb-enhancements');
 const EventEmitter = require('events');
 const RequestTarget = require('@kothique/request-target');
 
