@@ -1,6 +1,6 @@
 {
   "name": "@fappurbate/channel-bot",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Bot side of the library allowing easy communication among Chaturbate apps & bots and Fappurbate extensions.",
   "main": "dist/index.js",
   "scripts": {
