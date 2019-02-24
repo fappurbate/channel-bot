@@ -70,10 +70,14 @@ class Channel {
     events.on('request', this._listeners.request = (channelName, requestId, subject, data) => {
       if (channelName !== this._name) { return; }
 
-      this._requestHandlers.request(subject, data).then(
-        result => cb.sendNotice(this._createSuccessfulResponse(requestId, result), cb.room_slug),
-        error => cb.sendNotice(this._createFailingResponse(requestId, error), cb.room_slug)
-      );
+      const fail = error => cb.sendNotice(this._createFailingResponse(requestId, error), cb.room_slug);
+      const succeed = result => cb.sendNotice(this._createSuccessfulResponse(requestId, result), cb.room_slug);
+
+      try {
+        Promise.resolve(this._requestHandlers.request(subject, data)).then(succeed).catch(fail);
+      } catch (error) {
+        fail(error);
+      }
     });
 
     events.on('success', this._listeners.success = (channelName, requestId, data) => {
